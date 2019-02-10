@@ -11,6 +11,13 @@
 
 ![](images/2-importrepo.jpg)
 ![](images/3-importrepo.jpg)
+- Define variables in your build pipeline in the web UI
+>
+        dockerId: The admin user name/Service Principal ID for the Azure Container Registry.
+        acrName: The Azure Container Registry name.
+        dockerPassword: The admin password/Service Principal password for Azure Container Registry.
+![](images/7-variablegroup.jpg.jpg)
+![](images/8-variables.jpg)
 - Build pipeline for the application Docker container is included in the repo.
 
 ![](images/4-setupbuild.jpg)
@@ -20,10 +27,11 @@
 - Browse to and select the devops-pipelines.yml file. You may also change the agent to be Hosted Ubuntu
 
 ![](images/6-yamlfile.jpg)
-- Define variables in your build pipeline in the web UI
->
-        dockerId: The admin user name/Service Principal ID for the Azure Container Registry.
-        acrName: The Azure Container Registry name.
-        dockerPassword: The admin password/Service Principal password for Azure Container Registry.
 
-- Run the build pipeline and verify that it works
+- Click on variables tab and link already created variable group
+
+![](images/9-link.jpg)
+
+- Save & queue will automatically start the build pipeline. Verify that it completes successfully. Once completed, you may verify on azure portal that image is pushed in your repository.
+
+![](images/10-repos.jpg)
