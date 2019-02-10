@@ -1,5 +1,5 @@
 
-# Continous Integration & Continous Delivery with Azure DevOps
+# Continous Integration with Azure DevOps
 
 ## Using Azure DevOps to create container images & pushing such images to Azure container registry
 - Visit https://dev.azure.com and sign-in with your Azure subscription credentials
@@ -10,8 +10,9 @@
 - Click new repo and import the code for helloworld image from the public GitHub repository located at https://github.com/pkumar26/azure-devops.git
 
 ![](images/2-importrepo.jpg)
+
 ![](images/3-importrepo.jpg)
-- Define variables in your build pipeline in the web UI
+- Define variables for your build pipeline in the web UI: Under Pipelines>Library> Create new variable group
 >
         dockerId: The admin user name/Service Principal ID for the Azure Container Registry.
         acrName: The Azure Container Registry name.
