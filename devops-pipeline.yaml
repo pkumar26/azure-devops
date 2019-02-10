@@ -1,0 +1,21 @@
+pool:
+  vmImage: 'Ubuntu 16.04'
+
+variables:
+  imageName: 'helloworld'
+
+steps:
+- script: docker build -f Dockerfile -t $(acrName).azurecr.io/$(imageName) .
+  displayName: 'docker build'
+
+- script: docker login -u $(dockerId) -p $(dockerPassword) $(acrName).azurecr.io
+  displayName: 'docker login'
+
+- script: docker push $(acrName).azurecr.io/$(imageName)
+  displayName: 'docker push latest if this is the master branch'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+
+- script: |
+        docker tag  $(acrName).azurecr.io/$(imageName) $(acrName).azurecr.io/$(imageName):$(Build.BuildId)
+        docker push $(acrName).azurecr.io/$(imageName):$(Build.BuildId)
+  displayName: 'docker push with build number'
