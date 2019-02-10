@@ -7,7 +7,7 @@
 - Create a new private project, and give it a name.
 
 ![](images/1-newproject.jpg)
-- Click on Repos then import the code of the captureorder service from the public GitHub repository located at https://github.com/pkumar26/azure-devops.git
+- Click new repo and import the code for helloworld image from the public GitHub repository located at https://github.com/pkumar26/azure-devops.git
 
 ![](images/2-importrepo.jpg)
 ![](images/3-importrepo.jpg)
