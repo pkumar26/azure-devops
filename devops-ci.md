@@ -36,3 +36,10 @@
 - Save & queue will automatically start the build pipeline. Verify that it completes successfully. Once completed, you may verify on azure portal that image is pushed in your repository.
 
 ![](images/10-repos.jpg)
+
+- Modify following line in server.js and commit\
+        res.send('Hello World-v2!!\n');\
+        to\
+        res.send('Hello World!!\n');
+
+- Notice what happens and verify if you've new version of the image in your repository
