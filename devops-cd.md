@@ -5,11 +5,12 @@
 
 ![](images/11-newrepo.jpg)
 
-- Edit all files under yaml directory in locally cloned repo and modify:\
-    **<yourACRRegistry.azurecr.io>** with your repo url and \
-    **\<k8sSecretName>** with your secret created earlier
+- Edit helloworld YAMLs in locally cloned repo and modify:\
+    - **<yourACRRegistry.azurecr.io>** with your repo url
+    - **helloworld:latest** to helloworld:##BUILD_ID##
+    - **\<k8sSecretName>** with your secret created earlier
 - Edit helloworld-v2.yaml again and change \
-    **##BUILD_ID##** with the version you noted earlier in CI steps.
+    - **##BUILD_ID##** with the version you noted earlier in CI steps.
 - In the new repository, create a folder yaml and add all YAMLs you modified in previous step to it.
 - You must mention file name while creating folder e.g. test.yaml but you can delete it once you upload other YAMLs.
 
