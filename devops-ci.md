@@ -37,6 +37,8 @@
 
 ![](images/10-repos.jpg)
 
+- Note down the version/ tag number of the image pushed. We will use this version later in CD pipeline for deploying helloworld-v2
+
 - Modify following line in server.js and commit\
         res.send('Hello World-v2!!\n');\
         to\

@@ -1,17 +1,23 @@
 # Continous Deployment with Azure DevOps
 
+- Visit https://dev.azure.com and continue with same project you created earlier for CI.
 - Create a new Azure DevOps Repo, for example k8s-deploy-apps to hold the the YAML configuration for Kubernetes
 
 ![](images/11-newrepo.jpg)
 
-- In the new repository, create a folder yaml and add all helloworld and aci YAMLs, provided with repo you cloned earlier.
+- Edit all files under yaml directory in locally cloned repo and modify:\
+    **<yourACRRegistry.azurecr.io>** with your repo url and \
+    **\<k8sSecretName>** with your secret created earlier
+- Edit helloworld-v2.yaml again and change \
+    **##BUILD_ID##** with the version you noted earlier in CI steps.
+- In the new repository, create a folder yaml and add all YAMLs you modified in previous step to it.
 - You must mention file name while creating folder e.g. test.yaml but you can delete it once you upload other YAMLs.
 
 ![](images/12-newfolder.jpg)
 
-**Create artifacts build pipeline for the Kubernetes config files**
-
 - Upload azure-pipelines.yaml and store it in root directory. Then create a new build pipeline
+
+**Create artifacts build pipeline for the Kubernetes config files**
 
 ![](images/19-build.jpg)
 
@@ -50,14 +56,19 @@
 
     sed -i "s/##BUILD_ID##/${RELEASE_ARTIFACTS__HELLOWORLD_BUILDNUMBER}/g" "$SYSTEM_ARTIFACTSDIRECTORY/_k8s-deploy-apps-CI/yaml/helloworld-v1.yaml"
 
+    sed -i "s/##BUILD_ID##/${RELEASE_ARTIFACTS__HELLOWORLD_BUILDNUMBER}/g" "$SYSTEM_ARTIFACTSDIRECTORY/_k8s-deploy-apps-CI/yaml/helloworld-internal.yaml"
+
 - Add a Deploy to Kubernetes task. Configure access to your AKS cluster using the service connection created earlier.
 
-- Scroll down and check Use configuration files and use the following value $(System.DefaultWorkingDirectory)/_azch-captureorder-kubernetes-CI/yaml/captureorder-deployment.yaml or select it from the browse button.
+- Scroll down and check Use configuration files and browse file path.
+> Filled value will look similar to this: $(System.DefaultWorkingDirectory)/_k8s-deploy-apps-CI/yaml/helloworld-internal.yaml
 
  ![](images/20-task2.jpg)
 
-  ![](images/20-task3.jpg)
+ ![](images/20-task3.jpg)
 
-> **Hint:** Do the same for all other YAMLs. You can right click on the Kubernetes task and clone it.
+> **Hint:** Do the same for all other YAMLs. You can right click on the Kubernetes task and clone it. Select appropriate file for every cloned task.
+
+ ![](images/20-task4.jpg)
 
 - Create a manual release and pick the latest build as the source. Verify the release runs and that the captureorder service is deployed
